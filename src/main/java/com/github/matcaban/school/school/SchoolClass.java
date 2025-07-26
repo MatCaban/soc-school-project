@@ -17,11 +17,6 @@ public class SchoolClass {
     }
 
 
-
-    public Teacher getPrimaryTeacher() {
-        return primaryTeacher;
-    }
-
     public void addStudent(Student student) {
         students.add(student);
     }

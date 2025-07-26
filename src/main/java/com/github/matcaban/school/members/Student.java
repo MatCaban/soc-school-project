@@ -4,6 +4,8 @@ import com.github.matcaban.school.school.Grade;
 import com.github.matcaban.school.school.SchoolClass;
 import com.github.matcaban.school.school.Subject;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +16,7 @@ public class Student extends SchoolMember{
     public Student(String name, SchoolClass schoolClass) {
         super(name);
         setSchoolClass(schoolClass);
+        this.grades = new HashMap<>();
     }
 
     public void setSchoolClass(SchoolClass schoolClass) {
@@ -25,4 +28,8 @@ public class Student extends SchoolMember{
     }
 
 
+    public void setGrades(Subject subject, Grade grade) {
+        this.grades.putIfAbsent(subject, new ArrayList<Grade>());
+        this.grades.get(subject).add(grade);
+    }
 }
