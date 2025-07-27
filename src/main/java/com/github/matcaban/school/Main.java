@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
-        List<Student> students = new ArrayList<>();
         List<SchoolClass> school = new ArrayList<>();
 
         Teacher babic = new Teacher("babic");
@@ -27,12 +26,12 @@ public class Main {
         Subject chemistry = new Subject("chemistry", smrecan);
         Subject physics = new Subject("physics", kobzova);
 
-        Student peter = new Student("peter", prima);
-        Student eva = new Student("eva", prima);
-        Student anna = new Student("anna", prima);
-        Student jozef = new Student("jozef", sekunda);
-        Student jan = new Student("jan", sekunda);
-        Student emma = new Student("emma", sekunda);
+        Student peter = new Student("peter");
+        Student eva = new Student("eva");
+        Student anna = new Student("anna");
+        Student jozef = new Student("jozef");
+        Student jan = new Student("jan");
+        Student emma = new Student("emma");
 
         prima.addStudent(peter);
         prima.addStudent(eva);
@@ -69,19 +68,12 @@ public class Main {
             }
         }
 
-        students.add(peter);
-        students.add(eva);
-        students.add(anna);
-        students.add(jozef);
-        students.add(jan);
-        students.add(emma);
-
         System.out.println("Sorted students by their average grades: ");
         school.stream()
                 .flatMap(schoolClass -> schoolClass.getStudentsList().stream())
-                .sorted(Comparator.comparing(Student::getAverageGradePerStudent))
+                .sorted(Comparator.comparing(Student::averageGradeOfStudent))
                 .forEach(s -> System.out.printf(
-                        "%s - %.2f\n", s.getName(), s.getAverageGradePerStudent()
+                        "%s - %.2f\n", s.getName(), s.averageGradeOfStudent()
                 ));
 
 
@@ -100,6 +92,25 @@ public class Main {
                 .sorted(Map.Entry.comparingByValue())
                 .forEach(e ->
                         System.out.printf("%s - %.2f\n", e.getKey(), e.getValue()));
+
+        school.stream()
+                .flatMap(schoolClass -> schoolClass.getStudentsList().stream())
+                .flatMap(student -> student.getSubjectsList().stream())
+                .collect(Collectors.groupingBy(
+                        Subject::getName,
+                        Collectors.averagingDouble(Subject::getAverageGrade)))
+                .entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByValue())
+                .forEach(e -> System.out.printf("%s - %.2f\n", e.getKey(), e.getValue()));
+
+
+        System.out.println("\nSorted classes with the best students: ");
+
+        school.stream()
+                .sorted(Comparator.comparing(SchoolClass::averageGradeOfClass))
+                .forEach(schoolClass ->
+                        System.out.printf("%s - %.2f\n", schoolClass.getName(), schoolClass.averageGradeOfClass()));
 
     }
 

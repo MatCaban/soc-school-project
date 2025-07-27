@@ -30,6 +30,13 @@ public class SchoolClass {
         return students;
     }
 
+    public double averageGradeOfClass() {
+        return this.students.stream()
+                .mapToDouble(Student::averageGradeOfStudent)
+                .average()
+                .orElse(0);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;

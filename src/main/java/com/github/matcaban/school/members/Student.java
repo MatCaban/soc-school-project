@@ -1,7 +1,6 @@
 package com.github.matcaban.school.members;
 
 import com.github.matcaban.school.school.Grade;
-import com.github.matcaban.school.school.SchoolClass;
 import com.github.matcaban.school.school.Subject;
 
 import java.util.ArrayList;
@@ -9,12 +8,10 @@ import java.util.List;
 
 
 public class Student extends SchoolMember {
-    private SchoolClass schoolClass;
     private List<Subject> subjectsList;
 
-    public Student(String name, SchoolClass schoolClass) {
+    public Student(String name) {
         super(name);
-        this.schoolClass = schoolClass;
         this.subjectsList = new ArrayList<>();
     }
 
@@ -31,7 +28,7 @@ public class Student extends SchoolMember {
         return subjectsList;
     }
 
-    public double getAverageGradePerStudent() {
+    public double averageGradeOfStudent() {
         return this.subjectsList.stream()
                 .flatMap(s -> s.getGrades()
                         .stream()
@@ -41,18 +38,11 @@ public class Student extends SchoolMember {
                 .orElse(0);
     }
 
-    public void setSchoolClass(SchoolClass schoolClass) {
-        this.schoolClass = schoolClass;
-    }
-
-
 
     @Override
     public String toString() {
-        return super.getName() + " attends " + subjectsList +
-                (this.schoolClass != null
-                        ? " , is member of class: " + this.schoolClass.getName()
-                        : "");
-
+        return super.toString() + "Student{" +
+                "subjectsList=" + subjectsList +
+                '}';
     }
 }
