@@ -14,8 +14,16 @@ public abstract class SchoolMember {
         if (name.isBlank()) {
             throw new RuntimeException("Name cannot be empty");
         } else {
-            this.name = name;
+            this.name = formatName(name);
         }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    private String formatName(String name){
+        return name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase();
     }
 
     @Override

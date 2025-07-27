@@ -7,16 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Teacher extends SchoolMember {
-    private List<Subject> subjects;
-    private SchoolClass schoolClass;
-    public Teacher(String name, SchoolClass schoolClass) {
+
+    public Teacher(String name) {
         super(name);
-
-        this.subjects = new ArrayList<>();
-    }
-
-
-    public SchoolClass getSchoolClass() {
-        return schoolClass;
     }
 }
