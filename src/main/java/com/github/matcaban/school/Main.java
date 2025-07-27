@@ -5,20 +5,20 @@ import com.github.matcaban.school.members.Teacher;
 import com.github.matcaban.school.school.SchoolClass;
 import com.github.matcaban.school.school.Subject;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
         List<Student> students = new ArrayList<>();
-        SchoolClass prima = new SchoolClass("prima");
-        SchoolClass sekunda = new SchoolClass("sekunda");
+        List<SchoolClass> school = new ArrayList<>();
 
         Teacher babic = new Teacher("babic");
         Teacher kobzova = new Teacher("kobzova");
         Teacher smrecan = new Teacher("smrecan");
+
+        SchoolClass prima = new SchoolClass("prima", babic);
+        SchoolClass sekunda = new SchoolClass("sekunda", kobzova);
 
         Subject math = new Subject("math", kobzova);
         Subject biology = new Subject("biology", babic);
@@ -34,94 +34,41 @@ public class Main {
         Student jan = new Student("jan", sekunda);
         Student emma = new Student("emma", sekunda);
 
+        prima.addStudent(peter);
+        prima.addStudent(eva);
+        prima.addStudent(anna);
+        sekunda.addStudent(jozef);
+        sekunda.addStudent(jan);
+        sekunda.addStudent(emma);
+
+        school.add(prima);
+        school.add(sekunda);
+
         for (int i = 0; i < 9; i++) {
             if (i < 3) {
-                peter.setSubjects(math, setRandomGrade());
-                eva.setSubjects(germanLanguage, setRandomGrade());
-                anna.setSubjects(physics, setRandomGrade());
-                jozef.setSubjects(history,setRandomGrade());
-                jan.setSubjects(biology, setRandomGrade());
-                emma.setSubjects(germanLanguage, setRandomGrade());
+                peter.addSubjectAndGrade(math, setRandomGrade());
+                eva.addSubjectAndGrade(germanLanguage, setRandomGrade());
+                anna.addSubjectAndGrade(physics, setRandomGrade());
+                jozef.addSubjectAndGrade(history, setRandomGrade());
+                jan.addSubjectAndGrade(biology, setRandomGrade());
+                emma.addSubjectAndGrade(germanLanguage, setRandomGrade());
             } else if (i < 6) {
-                peter.setSubjects(biology, setRandomGrade());
-                eva.setSubjects(chemistry, setRandomGrade());
-                anna.setSubjects(chemistry, setRandomGrade());
-                jozef.setSubjects(math,setRandomGrade());
-                jan.setSubjects(physics, setRandomGrade());
-                emma.setSubjects(history, setRandomGrade());
+                peter.addSubjectAndGrade(biology, setRandomGrade());
+                eva.addSubjectAndGrade(chemistry, setRandomGrade());
+                anna.addSubjectAndGrade(chemistry, setRandomGrade());
+                jozef.addSubjectAndGrade(math, setRandomGrade());
+                jan.addSubjectAndGrade(physics, setRandomGrade());
+                emma.addSubjectAndGrade(history, setRandomGrade());
             } else {
-                peter.setSubjects(history, setRandomGrade());
-                eva.setSubjects(math, setRandomGrade());
-                anna.setSubjects(germanLanguage, setRandomGrade());
-                jozef.setSubjects(physics,setRandomGrade());
-                jan.setSubjects(math, setRandomGrade());
-                emma.setSubjects(chemistry, setRandomGrade());
+                peter.addSubjectAndGrade(history, setRandomGrade());
+                eva.addSubjectAndGrade(math, setRandomGrade());
+                anna.addSubjectAndGrade(germanLanguage, setRandomGrade());
+                jozef.addSubjectAndGrade(physics, setRandomGrade());
+                jan.addSubjectAndGrade(math, setRandomGrade());
+                emma.addSubjectAndGrade(chemistry, setRandomGrade());
             }
         }
 
-//        peter.setSubjects(math, setRandomGrade());
-//        peter.setSubjects(math, setRandomGrade());
-//        peter.setSubjects(math, setRandomGrade());
-//        peter.setSubjects(biology, setRandomGrade());
-//        peter.setSubjects(biology, setRandomGrade());
-//        peter.setSubjects(biology, setRandomGrade());
-//        peter.setSubjects(history, setRandomGrade());
-//        peter.setSubjects(history, setRandomGrade());
-//        peter.setSubjects(history, setRandomGrade());
-//
-//        eva.setSubjects(germanLanguage, setRandomGrade());
-//        eva.setSubjects(germanLanguage, setRandomGrade());
-//        eva.setSubjects(chemistry, setRandomGrade());
-//        eva.setSubjects(chemistry, setRandomGrade());
-//        eva.setSubjects(chemistry, setRandomGrade());
-//        eva.setSubjects(math, setRandomGrade());
-//        eva.setSubjects(math, setRandomGrade());
-//        eva.setSubjects(math, setRandomGrade());
-//        eva.setSubjects(germanLanguage, setRandomGrade());
-//
-//        anna.setSubjects(physics, setRandomGrade());
-//        anna.setSubjects(physics, setRandomGrade());
-//        anna.setSubjects(physics, setRandomGrade());
-//        anna.setSubjects(chemistry, setRandomGrade());
-//        anna.setSubjects(chemistry, setRandomGrade());
-//        anna.setSubjects(chemistry, setRandomGrade());
-//        anna.setSubjects(germanLanguage, setRandomGrade());
-//        anna.setSubjects(germanLanguage, setRandomGrade());
-//        anna.setSubjects(germanLanguage, setRandomGrade());
-//
-//        jozef.setSubjects(history, setRandomGrade());
-//        jozef.setSubjects(history, setRandomGrade());
-//        jozef.setSubjects(history, setRandomGrade());
-//        jozef.setSubjects(math, setRandomGrade());
-//        jozef.setSubjects(math, setRandomGrade());
-//        jozef.setSubjects(math, setRandomGrade());
-//        jozef.setSubjects(physics, setRandomGrade());
-//        jozef.setSubjects(physics, setRandomGrade());
-//        jozef.setSubjects(physics, setRandomGrade());
-//
-//        jan.setSubjects(biology, setRandomGrade());
-//        jan.setSubjects(biology, setRandomGrade());
-//        jan.setSubjects(biology, setRandomGrade());
-//        jan.setSubjects(chemistry, setRandomGrade());
-//        jan.setSubjects(chemistry, setRandomGrade());
-//        jan.setSubjects(chemistry, setRandomGrade());
-//        jan.setSubjects(physics, 3);
-//        jan.setSubjects(physics, 2);
-//        jan.setSubjects(physics, 2);
-//
-//        emma.setSubjects(germanLanguage, 3);
-//        emma.setSubjects(germanLanguage, 2);
-//        emma.setSubjects(germanLanguage, 2);
-//        emma.setSubjects(history, 2);
-//        emma.setSubjects(history, 4);
-//        emma.setSubjects(history, 3);
-//        emma.setSubjects(math, 2);
-//        emma.setSubjects(math, 1.5);
-//        emma.setSubjects(math, 2);
-
-//        schoolMembers.add(babic);
-//        schoolMembers.add(kobzova);
-//        schoolMembers.add(smrecan);
         students.add(peter);
         students.add(eva);
         students.add(anna);
@@ -130,24 +77,46 @@ public class Main {
         students.add(emma);
 
         System.out.println("Sorted students by their average grades: ");
-        students.stream()
+        school.stream()
+                .flatMap(schoolClass -> schoolClass.getStudentsList().stream())
                 .sorted(Comparator.comparing(Student::getAverageGradePerStudent))
                 .forEach(s -> System.out.printf(
-                        "%s - %.2f\n",s.getName(), s.getAverageGradePerStudent()
+                        "%s - %.2f\n", s.getName(), s.getAverageGradePerStudent()
                 ));
 
 
-        students.forEach(s -> System.out.println(s.getAverageGradePerSubject()));
+        Map<Subject, Double> subjectAverage = new HashMap<>();
+        subjectAverage.put(math, averageOfSubject("math", school));
+        subjectAverage.put(biology, averageOfSubject("biology", school));
+        subjectAverage.put(history, averageOfSubject("history", school));
+        subjectAverage.put(germanLanguage, averageOfSubject("german language", school));
+        subjectAverage.put(chemistry, averageOfSubject("chemistry", school));
+        subjectAverage.put(physics, averageOfSubject("physics", school));
 
+        System.out.println("\nSorted subjects by average of grades given to students:");
 
-        emma.addSubjectAndGrade(math, 3);
-        emma.addSubjectAndGrade(math, 2);
-        emma.addSubjectAndGrade(biology, 2);
+        subjectAverage.entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByValue())
+                .forEach(e ->
+                        System.out.printf("%s - %.2f\n", e.getKey(), e.getValue()));
 
-        emma.getSubjectsList().forEach(s -> System.out.println(s.getGrades()));
     }
 
-    public static double setRandomGrade(){
+    public static double setRandomGrade() {
         return (new Random().nextDouble() * 4) + 1;
+    }
+
+    public static double averageOfSubject(String subjectName, List<SchoolClass> schoolClasses) {
+
+        return schoolClasses.stream()
+                .flatMap(schoolClass -> schoolClass.getStudentsList().stream())
+                .map(Student::getSubjectsList)
+                .flatMap(subjects -> subjects.stream()
+                        .filter(subject -> subject.getName().equals(subjectName)))
+                .mapToDouble(Subject::getAverageGrade)
+                .average()
+                .orElse(0);
+
     }
 }

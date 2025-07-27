@@ -21,10 +21,20 @@ public class Subject {
         this.grades.add(new Grade(grade));
     }
 
+    public String getName() {
+        return name;
+    }
+
     public List<Grade> getGrades() {
         return grades;
     }
 
+    public double getAverageGrade() {
+        return this.grades.stream()
+                .mapToDouble(grade -> grade.getGrade())
+                .average()
+                .orElse(0);
+    }
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;

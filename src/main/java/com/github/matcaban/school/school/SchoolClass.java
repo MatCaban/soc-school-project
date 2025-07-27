@@ -8,17 +8,27 @@ import java.util.List;
 import java.util.Objects;
 
 public class SchoolClass {
-
+    private Teacher primaryTeacher;
     private String name;
+    private List<Student> students;
 
-    public SchoolClass(String name) {
+    public SchoolClass(String name, Teacher primaryTeacher) {
         this.name = name;
+        this.primaryTeacher = primaryTeacher;
+        this.students = new ArrayList<>();
     }
 
     public String getName() {
         return name;
     }
 
+    public void addStudent(Student student) {
+        this.students.add(student);
+    }
+
+    public List<Student> getStudentsList() {
+        return students;
+    }
 
     @Override
     public boolean equals(Object o) {
