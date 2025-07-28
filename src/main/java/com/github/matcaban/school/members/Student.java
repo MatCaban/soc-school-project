@@ -39,12 +39,4 @@ public class Student extends SchoolMember {
                 .average()
                 .orElse(0);
     }
-
-
-    @Override
-    public String toString() {
-        return super.toString() + "Student{" +
-                "subjectsList=" + subjectsList +
-                '}';
-    }
 }

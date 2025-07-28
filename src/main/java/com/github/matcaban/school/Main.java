@@ -50,6 +50,8 @@ public class Main {
         school.add(prima);
         school.add(sekunda);
 
+
+        // assign 3 Subjects to each student and in each subject 3 random grades for each student
         for (int i = 0; i < 9; i++) {
             if (i < 3) {
                 peter.addSubjectAndGrade(math, setRandomGrade());
@@ -62,7 +64,7 @@ public class Main {
                 peter.addSubjectAndGrade(biology, setRandomGrade());
                 eva.addSubjectAndGrade(chemistry, setRandomGrade());
                 anna.addSubjectAndGrade(chemistry, setRandomGrade());
-                jozef.addSubjectAndGrade(math, setRandomGrade());
+                jozef.addSubjectAndGrade(biology, setRandomGrade());
                 jan.addSubjectAndGrade(physics, setRandomGrade());
                 emma.addSubjectAndGrade(history, setRandomGrade());
             } else {
@@ -79,8 +81,8 @@ public class Main {
         school.stream()
                 .flatMap(schoolClass -> schoolClass.getStudentsList().stream())
                 .sorted(Comparator.comparing(Student::averageGradeOfStudent))
-                .forEach(s -> System.out.printf(
-                        "%s - %.2f\n", s.getName(), s.averageGradeOfStudent()
+                .forEach(student -> System.out.printf(
+                        "%s - %.2f\n", student.getName(), student.averageGradeOfStudent()
                 ));
 
 
@@ -110,7 +112,5 @@ public class Main {
     public static double setRandomGrade() {
         return (new Random().nextDouble() * 4) + 1;
     }
-
-
 }
 
