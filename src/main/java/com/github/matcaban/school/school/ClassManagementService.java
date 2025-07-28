@@ -4,7 +4,6 @@ import com.github.matcaban.school.members.Student;
 import com.github.matcaban.school.members.Teacher;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class ClassManagementService {
@@ -44,7 +43,7 @@ public class ClassManagementService {
         primaryTeachers.remove(teacher);
     }
 
-    public void enrollStudent(Student student, SchoolClass schoolClass) {
+    public void enrollStudentInClass(Student student, SchoolClass schoolClass) {
         if (schoolClass == null) {
             throw new RuntimeException("Class cannot be null");
         }
@@ -61,7 +60,7 @@ public class ClassManagementService {
         studentsInClasses.put(student, schoolClass);
     }
 
-    public void unenrollStudent(Student student, SchoolClass schoolClass) {
+    public void unenrollStudentFromClass(Student student, SchoolClass schoolClass) {
         if (schoolClass == null) {
             throw new RuntimeException("Class cannot be null");
         }

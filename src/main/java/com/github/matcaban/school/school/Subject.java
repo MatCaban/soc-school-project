@@ -4,12 +4,11 @@ import com.github.matcaban.school.members.Teacher;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Subject {
-    private String name;
-    private Teacher teacher;
-    private List<Grade> grades;
+    private final String name;
+    private final Teacher teacher;
+    private final List<Grade> grades;
 
     public Subject(String name, Teacher teacher) {
         this.name = name;
@@ -31,24 +30,8 @@ public class Subject {
 
     public double getAverageGrade() {
         return this.grades.stream()
-                .mapToDouble(grade -> grade.getGrade())
+                .mapToDouble(Grade::getGrade)
                 .average()
                 .orElse(0);
-    }
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Subject subject = (Subject) o;
-        return Objects.equals(name, subject.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(name);
-    }
-
-    @Override
-    public String toString() {
-        return this.name;
     }
 }

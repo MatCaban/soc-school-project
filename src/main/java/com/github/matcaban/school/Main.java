@@ -39,12 +39,12 @@ public class Main {
         Student jan = new Student("jan");
         Student emma = new Student("emma");
 
-        classService.enrollStudent(peter,prima);
-        classService.enrollStudent(eva, prima);
-        classService.enrollStudent(anna, prima);
-        classService.enrollStudent(jozef, sekunda);
-        classService.enrollStudent(jan, sekunda);
-        classService.enrollStudent(emma, sekunda);
+        classService.enrollStudentInClass(peter,prima);
+        classService.enrollStudentInClass(eva, prima);
+        classService.enrollStudentInClass(anna, prima);
+        classService.enrollStudentInClass(jozef, sekunda);
+        classService.enrollStudentInClass(jan, sekunda);
+        classService.enrollStudentInClass(emma, sekunda);
 
 
         school.add(prima);

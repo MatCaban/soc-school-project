@@ -13,16 +13,11 @@ public class Grade {
         return grade;
     }
 
-    public void setGrade(double grade) {
+    void setGrade(double grade) {
         if (grade < BEST_GRADE || grade > WORST_GRADE) {
             throw new RuntimeException("Grade must be between " + BEST_GRADE + " and " + WORST_GRADE);
         } else {
             this.grade = grade;
         }
-    }
-
-    @Override
-    public String toString() {
-        return "" + this.grade;
     }
 }

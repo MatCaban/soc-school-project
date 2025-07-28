@@ -1,7 +1,6 @@
 package com.github.matcaban.school.members;
 
 import com.github.matcaban.school.school.Grade;
-import com.github.matcaban.school.school.SchoolClass;
 import com.github.matcaban.school.school.Subject;
 
 import java.util.ArrayList;
@@ -9,7 +8,7 @@ import java.util.List;
 
 
 public class Student extends SchoolMember {
-    private List<Subject> subjectsList;
+    private final List<Subject> subjectsList;
 
     public Student(String name) {
         super(name);
