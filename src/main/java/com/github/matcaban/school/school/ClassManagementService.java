@@ -20,11 +20,11 @@ public class ClassManagementService {
         }
 
         if (schoolClass.getPrimaryTeacher() != null) {
-            throw new RuntimeException("Class : " + schoolClass.getName() + " already has primary teacher");
+            throw new RuntimeException("Class : " + schoolClass.getName() + " already has primary teacher: " + schoolClass.getPrimaryTeacher().getName());
         }
 
         if (primaryTeachers.containsKey(teacher)) {
-            throw new RuntimeException("Teacher: " + teacher.getName() + " is already assign to Class");
+            throw new RuntimeException("Teacher: " + teacher.getName() + " is already assign to Class: " + primaryTeachers.get(teacher).getName());
         }
 
         schoolClass.setPrimaryTeacher(teacher);
