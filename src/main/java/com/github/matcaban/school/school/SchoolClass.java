@@ -12,9 +12,8 @@ public class SchoolClass {
     private String name;
     private List<Student> students;
 
-    public SchoolClass(String name, Teacher primaryTeacher) {
+    public SchoolClass(String name) {
         this.name = name;
-        this.primaryTeacher = primaryTeacher;
         this.students = new ArrayList<>();
     }
 
@@ -26,6 +25,9 @@ public class SchoolClass {
         this.students.add(student);
     }
 
+    public void removeStudent(Student student) {
+        this.students.remove(student);
+    }
     public List<Student> getStudentsList() {
         return students;
     }

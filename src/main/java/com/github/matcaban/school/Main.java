@@ -2,6 +2,7 @@ package com.github.matcaban.school;
 
 import com.github.matcaban.school.members.Student;
 import com.github.matcaban.school.members.Teacher;
+import com.github.matcaban.school.school.ClassManagementService;
 import com.github.matcaban.school.school.SchoolClass;
 import com.github.matcaban.school.school.Subject;
 
@@ -11,13 +12,18 @@ import java.util.stream.Collectors;
 public class Main {
     public static void main(String[] args) {
         List<SchoolClass> school = new ArrayList<>();
+        ClassManagementService classService = new ClassManagementService();
 
         Teacher babic = new Teacher("babic");
         Teacher kobzova = new Teacher("kobzova");
         Teacher smrecan = new Teacher("smrecan");
 
-        SchoolClass prima = new SchoolClass("prima", babic);
-        SchoolClass sekunda = new SchoolClass("sekunda", kobzova);
+        SchoolClass prima = new SchoolClass("prima");
+        SchoolClass sekunda = new SchoolClass("sekunda");
+
+        classService.assignTeacherToClass(babic, prima);
+        classService.assignTeacherToClass(kobzova, sekunda);
+
 
         Subject math = new Subject("math", kobzova);
         Subject biology = new Subject("biology", babic);
@@ -33,12 +39,13 @@ public class Main {
         Student jan = new Student("jan");
         Student emma = new Student("emma");
 
-        prima.addStudent(peter);
-        prima.addStudent(eva);
-        prima.addStudent(anna);
-        sekunda.addStudent(jozef);
-        sekunda.addStudent(jan);
-        sekunda.addStudent(emma);
+        classService.enrollStudent(peter,prima);
+        classService.enrollStudent(eva, prima);
+        classService.enrollStudent(anna, prima);
+        classService.enrollStudent(jozef, sekunda);
+        classService.enrollStudent(jan, sekunda);
+        classService.enrollStudent(emma, sekunda);
+
 
         school.add(prima);
         school.add(sekunda);
