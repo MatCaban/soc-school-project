@@ -30,6 +30,14 @@ public class SchoolClass {
         return students;
     }
 
+    void setPrimaryTeacher(Teacher teacher) {
+        this.primaryTeacher = teacher;
+    }
+
+    public Teacher getPrimaryTeacher() {
+        return primaryTeacher;
+    }
+
     public double averageGradeOfClass() {
         return this.students.stream()
                 .mapToDouble(Student::averageGradeOfStudent)

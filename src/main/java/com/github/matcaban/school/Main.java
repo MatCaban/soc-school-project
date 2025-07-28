@@ -77,21 +77,7 @@ public class Main {
                 ));
 
 
-        Map<Subject, Double> subjectAverage = new HashMap<>();
-        subjectAverage.put(math, averageOfSubject("math", school));
-        subjectAverage.put(biology, averageOfSubject("biology", school));
-        subjectAverage.put(history, averageOfSubject("history", school));
-        subjectAverage.put(germanLanguage, averageOfSubject("german language", school));
-        subjectAverage.put(chemistry, averageOfSubject("chemistry", school));
-        subjectAverage.put(physics, averageOfSubject("physics", school));
-
         System.out.println("\nSorted subjects by average of grades given to students:");
-
-        subjectAverage.entrySet()
-                .stream()
-                .sorted(Map.Entry.comparingByValue())
-                .forEach(e ->
-                        System.out.printf("%s - %.2f\n", e.getKey(), e.getValue()));
 
         school.stream()
                 .flatMap(schoolClass -> schoolClass.getStudentsList().stream())
@@ -118,16 +104,6 @@ public class Main {
         return (new Random().nextDouble() * 4) + 1;
     }
 
-    public static double averageOfSubject(String subjectName, List<SchoolClass> schoolClasses) {
 
-        return schoolClasses.stream()
-                .flatMap(schoolClass -> schoolClass.getStudentsList().stream())
-                .map(Student::getSubjectsList)
-                .flatMap(subjects -> subjects.stream()
-                        .filter(subject -> subject.getName().equals(subjectName)))
-                .mapToDouble(Subject::getAverageGrade)
-                .average()
-                .orElse(0);
-
-    }
 }
+
