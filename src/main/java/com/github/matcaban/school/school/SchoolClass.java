@@ -5,6 +5,7 @@ import com.github.matcaban.school.members.Teacher;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class SchoolClass {
     private Teacher primaryTeacher;
@@ -44,5 +45,17 @@ public class SchoolClass {
                 .mapToDouble(Student::averageGradeOfStudent)
                 .average()
                 .orElse(0);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        SchoolClass that = (SchoolClass) o;
+        return Objects.equals(primaryTeacher, that.primaryTeacher) && Objects.equals(name, that.name) && Objects.equals(students, that.students);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(primaryTeacher, name, students);
     }
 }
