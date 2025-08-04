@@ -31,17 +31,6 @@ public class ClassManagementService {
         primaryTeachers.put(teacher, schoolClass);
     }
 
-    public void unassignTeacherFromClass(SchoolClass schoolClass) {
-        if (schoolClass == null) {
-            throw new RuntimeException("Class cannot be null");
-        }
-        if (schoolClass.getPrimaryTeacher() == null) {
-            throw new RuntimeException("Class already doesnt have primary teacher");
-        }
-        Teacher teacher = schoolClass.getPrimaryTeacher();
-        schoolClass.setPrimaryTeacher(null);
-        primaryTeachers.remove(teacher);
-    }
 
     public void enrollStudentInClass(Student student, SchoolClass schoolClass) {
         if (schoolClass == null) {
@@ -60,20 +49,4 @@ public class ClassManagementService {
         studentsInClasses.put(student, schoolClass);
     }
 
-    public void unenrollStudentFromClass(Student student, SchoolClass schoolClass) {
-        if (schoolClass == null) {
-            throw new RuntimeException("Class cannot be null");
-        }
-
-        if (student == null) {
-            throw new RuntimeException("Student cannot be null");
-        }
-
-        if (studentsInClasses.get(student) != schoolClass) {
-            throw new RuntimeException("Student is not in this class");
-        } else {
-            studentsInClasses.remove(student);
-            schoolClass.removeStudent(student);
-        }
-    }
 }
